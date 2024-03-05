@@ -3,12 +3,17 @@ import { colors } from '../../theme/theme';
 
 export const styles = StyleSheet.create({
     mainContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         backgroundColor: colors.primary,
         paddingVertical: 10,
-        paddingRight: 10,
+        paddingRight: 25,
         paddingLeft: 25,
         marginVertical: 10,
         borderRadius: 10,
+    },
+    infoContainer: {
+
     },
     degreesText: {
         color: colors.white,
