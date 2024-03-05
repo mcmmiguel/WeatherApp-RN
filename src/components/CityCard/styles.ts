@@ -15,9 +15,13 @@ export const styles = StyleSheet.create({
     infoContainer: {
 
     },
+    iconContainer: {
+        justifyContent: 'center',
+    },
     degreesText: {
         color: colors.white,
         fontSize: 55,
+        fontWeight: '700',
     },
     coordenatesContainer: {
         flexDirection: 'row',

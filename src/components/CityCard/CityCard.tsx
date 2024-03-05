@@ -1,36 +1,38 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { styles } from './styles';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { CityCardProps } from '../../interfaces/interfaces';
+import { styles } from './styles';
+import { colors } from '../../theme/theme';
 
-const weatherIcons = {
+export const weatherIcons = {
     sunny: 'sunny-outline',
 };
 
-export const CityCard = ({ degrees, lat, long, city, state }: CityCardProps) => {
+export const CityCard = ({ temperature, lat, long, city, state, weather }: CityCardProps) => {
     return (
-        <View style={styles.mainContainer}>
+        <TouchableOpacity style={styles.mainContainer}>
             <View style={styles.infoContainer}>
-                <Text style={styles.degreesText}>20°</Text>
+                <Text style={styles.degreesText}>{temperature}°</Text>
                 <View style={styles.coordenatesContainer}>
                     <Text style={styles.coordenatesText}>
-                        Lat
-                        <Text style={styles.coordenatesText}>18.2°</Text>
+                        Lat:
+                        <Text style={styles.coordenatesText}> {lat}°</Text>
                     </Text>
                     <Text style={styles.coordenatesText}>
-                        Long
-                        <Text style={styles.coordenatesText}>18.2°</Text>
+                        Long:
+                        <Text style={styles.coordenatesText}> {long}°</Text>
                     </Text>
                 </View>
                 <Text style={styles.cityText}>
-                    Armeria,
-                    <Text style={styles.cityText}> Colima</Text>
+                    {city},
+                    <Text style={styles.cityText}> {state}</Text>
                 </Text>
             </View>
 
-            <View>
-                <Text>ICON</Text>
+            <View style={styles.iconContainer}>
+                <Icon name={weatherIcons.sunny} size={90} color={colors.white} />
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };

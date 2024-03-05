@@ -1,6 +1,7 @@
 
 export interface CityCardProps {
-    degrees: string;
+    temperature: string;
+    weather: string;
     lat: number;
     long: number;
     city: string;
