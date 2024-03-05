@@ -1,17 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
-import { CityCard } from '../../components/CityCard/CityCard';
+import { Text, View } from 'react-native';
+
+
 
 export const HomeScreen = () => {
+
     return (
         <View>
-            <CityCard
-                city="Armería"
-                temperature="20"
-                lat={15}
-                long={15}
-                state="Colima"
-            />
+            <Text>Hola</Text>
         </View>
     );
 };
