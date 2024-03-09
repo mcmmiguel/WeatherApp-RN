@@ -57,7 +57,7 @@ export const HomeCityInfo = () => {
 
     const getCurrentWeather = async () => {
         try {
-            const { data } = await weatherAPI.get<WeatherResponse>(`https://api.openweathermap.org/data/2.5/weather?lat=${userLocation.latitude}&lon=${userLocation.longitude}&appid=d08590422e6253bd0e931cc2b9133511&units=metric`);
+            const { data } = await weatherAPI.get<WeatherResponse>(`/weather?lat=${userLocation.latitude}&lon=${userLocation.longitude}&appid=d08590422e6253bd0e931cc2b9133511&units=metric`);
             const { name, coord, sys, main, weather } = data;
 
             setCityInfo({
