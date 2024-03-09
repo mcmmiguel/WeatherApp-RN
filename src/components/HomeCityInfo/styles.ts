@@ -20,8 +20,11 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 10,
     },
-    locationIcon: {
-
+    weatherIcon: {
+        height: 200,
+        width: 200,
+        resizeMode: 'cover',
+        // backgroundColor: 'red',
     },
     cityText: {
         fontSize: 20,

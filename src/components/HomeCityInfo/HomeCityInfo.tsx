@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground } from 'react-native';
+import { View, Text, ImageBackground, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import bgImage from '../../assets/background-img.png';
 import { colors, globalStyle } from '../../theme/theme';
@@ -37,7 +37,7 @@ export const HomeCityInfo = () => {
 
     useEffect(() => {
         getCurrentWeather();
-    }, []);
+    }, [userLocation]);
 
     const getCurrentLocation = (): Promise<UserLocation> => {
         return new Promise((resolve, reject) => {
@@ -70,7 +70,6 @@ export const HomeCityInfo = () => {
                 weather,
             });
 
-
         } catch (error) {
             console.log(error);
         }
@@ -82,17 +81,20 @@ export const HomeCityInfo = () => {
                 <View style={styles.infoContainer}>
                     <View>
                         <View style={styles.cityContainer}>
-                            <Icon name="location-sharp" size={20} style={styles.locationIcon} color={colors.white} />
+                            <Icon name="location-sharp" size={20} color={colors.white} />
                             <Text style={[globalStyle.textWhite, styles.cityText]}>{cityInfo.name}</Text>
                         </View>
                         <Text style={[globalStyle.textWhite, styles.temperature]}>{cityInfo.temperature}°</Text>
-                        <Text style={[globalStyle.textWhite, styles.weather]}>{cityInfo.weather[0].main}</Text>
+                        <Text style={[globalStyle.textWhite, styles.weather]}>{cityInfo.weather.length > 0 ? cityInfo.weather[0].main : 'No disponible'}</Text>
                         <View style={styles.coordsContainer}>
                             <Text style={[globalStyle.textWhite, styles.highlow]}>H: <Text>{cityInfo.maxTemperature}°</Text></Text>
                             <Text style={[globalStyle.textWhite, styles.highlow]}>L: <Text>{cityInfo.minTemperature}°</Text></Text>
                         </View>
                     </View>
-                    <Icon name="location-sharp" size={90} color={colors.white} />
+                    <Image
+                        source={{ uri: `https://openweathermap.org/img/wn/${cityInfo.weather.length > 0 ? cityInfo.weather[0].icon : ''}@4x.png` }}
+                        style={styles.weatherIcon}
+                    />
                 </View>
             </ImageBackground>
         </View>
