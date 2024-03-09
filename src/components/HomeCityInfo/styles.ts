@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
         height: 200,
         width: 200,
         resizeMode: 'cover',
-        // backgroundColor: 'red',
     },
     cityText: {
         fontSize: 20,

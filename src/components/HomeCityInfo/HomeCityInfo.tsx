@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ImageBackground, Image } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { WEATHER_API_KEY } from '@env';
+import { weatherAPI } from '../../api/weatherAPI';
+import { UserLocation, WeatherResponse, CityInfoProps } from '../../interfaces/interfaces';
 import bgImage from '../../assets/background-img.png';
 import { colors, globalStyle } from '../../theme/theme';
 import { styles } from './styles';
-import Geolocation from '@react-native-community/geolocation';
-import { UserLocation, WeatherResponse, CityInfoProps } from '../../interfaces/interfaces';
-import { weatherAPI } from '../../api/weatherAPI';
 
 export const HomeCityInfo = () => {
 
@@ -57,7 +58,7 @@ export const HomeCityInfo = () => {
 
     const getCurrentWeather = async () => {
         try {
-            const { data } = await weatherAPI.get<WeatherResponse>(`/weather?lat=${userLocation.latitude}&lon=${userLocation.longitude}&appid=d08590422e6253bd0e931cc2b9133511&units=metric`);
+            const { data } = await weatherAPI.get<WeatherResponse>(`/weather?lat=${userLocation.latitude}&lon=${userLocation.longitude}&appid=${WEATHER_API_KEY}&units=metric`);
             const { name, coord, sys, main, weather } = data;
 
             setCityInfo({
