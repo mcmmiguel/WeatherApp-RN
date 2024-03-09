@@ -12,14 +12,14 @@ export const HomeCityInfo = () => {
                 <View style={styles.mainContainer}>
                     <View>
                         <View style={styles.cityContainer}>
-                            <Icon name="location-sharp" size={20} color={colors.white} />
-                            <Text style={[globalStyle.textWhite]}>Armería</Text>
+                            <Icon name="location-sharp" size={20} style={styles.locationIcon} color={colors.white} />
+                            <Text style={[globalStyle.textWhite, styles.cityText]}>Armería</Text>
                         </View>
                         <Text style={[globalStyle.textWhite, styles.temperature]}>19°</Text>
                         <Text style={[globalStyle.textWhite, styles.weather]}>Clear</Text>
                         <View style={styles.coordsContainer}>
-                            <Text style={[globalStyle.textWhite, styles.coords]}>Lat: <Text>25°</Text></Text>
-                            <Text style={[globalStyle.textWhite, styles.coords]}>Long: <Text>25°</Text></Text>
+                            <Text style={[globalStyle.textWhite, styles.highlow]}>H: <Text>25°</Text></Text>
+                            <Text style={[globalStyle.textWhite, styles.highlow]}>L: <Text>25°</Text></Text>
                         </View>
                     </View>
                     <Icon name="location-sharp" size={90} color={colors.white} />
