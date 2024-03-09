@@ -16,4 +16,7 @@ export const globalStyle = StyleSheet.create({
         paddingHorizontal: 10,
         backgroundColor: colors.white,
     },
+    textWhite: {
+        color: colors.white,
+    },
 });

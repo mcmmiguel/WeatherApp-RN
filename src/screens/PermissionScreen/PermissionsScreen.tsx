@@ -3,9 +3,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import { PermissionsContext } from '../../context/PermissionsContext';
 import { PrimaryButton } from '../../components/PrimaryButton/PrimaryButton';
 
-const PermissionsScreen = () => {
+export const PermissionsScreen = () => {
 
-    const { permissions, askLocationPermission } = useContext(PermissionsContext);
+    const { askLocationPermission } = useContext(PermissionsContext);
 
     return (
         <View style={styles.container}>
@@ -18,8 +18,6 @@ const PermissionsScreen = () => {
         </View>
     );
 };
-
-export default PermissionsScreen;
 
 const styles = StyleSheet.create({
     container: {
