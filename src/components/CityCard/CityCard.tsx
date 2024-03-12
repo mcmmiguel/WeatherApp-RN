@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { CityCardProps } from '../../interfaces/interfaces';
 import { styles } from './styles';
 import { colors } from '../../theme/theme';
+import { CityCardProps } from '../../interfaces';
 
 export const weatherIcons = {
     sunny: 'sunny-outline',

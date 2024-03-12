@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { CityCard } from '../../components/CityCard/CityCard';
-import { weatherAPI } from '../../api/weatherAPI';
-import { CityInfoProps, WeatherResponse } from '../../interfaces/interfaces';
+import { CityCard } from '../../components';
+import { weatherAPI } from '../../api';
+import { CityInfoProps, WeatherResponse } from '../../interfaces';
 
 // const cityInfo = {
 //     cityName: 'Manzanillo',
@@ -28,6 +28,8 @@ export const SearchScreen = () => {
                 coord,
                 countryCode: sys.country,
                 temperature: main.temp,
+                maxTemperature: main.temp_max,
+                minTemperature: main.temp_min,
                 weather,
             };
 

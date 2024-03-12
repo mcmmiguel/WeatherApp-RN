@@ -1,10 +1,7 @@
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from '../screens/HomeScreen/HomeScreen';
-import { PermissionsScreen } from '../screens/PermissionScreen/PermissionsScreen';
-import { SearchScreen } from '../screens/SearchScreen/SearchScreen';
-import { PermissionsContext } from '../context/PermissionsContext';
-import { LoadingScreen } from '../screens/LoadingScreen/LoadingScreen';
+import { PermissionsContext } from '../context';
+import { HomeScreen, LoadingScreen, PermissionsScreen, SearchScreen } from '../screens';
 
 const Stack = createStackNavigator();
 
