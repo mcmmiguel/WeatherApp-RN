@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ImageBackground, Image } from 'react-native';
-import Geolocation from '@react-native-community/geolocation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { WEATHER_API_KEY } from '@env';
+import { useLocation } from '../../hooks';
 import bgImage from '../../assets/background-img.png';
 import { styles } from './styles';
-import { CityInfoProps, UserLocation, WeatherResponse } from '../../interfaces';
+import { CityInfoProps, WeatherResponse } from '../../interfaces';
 import { weatherAPI } from '../../api';
 import { colors, globalStyle } from '../../theme';
 
 export const HomeCityInfo = () => {
 
-    const [userLocation, setUserLocation] = useState<UserLocation>({
-        latitude: 0,
-        longitude: 0,
-    });
+    const { userLocation, setUserLocation, getCurrentLocation } = useLocation();
 
     const [cityInfo, setCityInfo] = useState<CityInfoProps>({
         name: '',
@@ -39,22 +36,6 @@ export const HomeCityInfo = () => {
     useEffect(() => {
         getCurrentWeather();
     }, [userLocation]);
-
-    const getCurrentLocation = (): Promise<UserLocation> => {
-        return new Promise((resolve, reject) => {
-            Geolocation.getCurrentPosition(
-                ({ coords }) => {
-
-                    resolve({
-                        latitude: coords.latitude,
-                        longitude: coords.longitude,
-                    });
-
-                },
-                (err) => reject(new Error(err)), { enableHighAccuracy: true }
-            );
-        });
-    };
 
     const getCurrentWeather = async () => {
         try {
