@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, ImageBackground, Text } from 'react-native';
+import { FlatList, ImageBackground } from 'react-native';
 import { HomeCityInfo, HourlyWeatherCard } from '../../components';
 import bgImage from '../../assets/background-img.png';
 import { weatherAPI } from '../../api';
@@ -30,24 +30,25 @@ export const HomeScreen = () => {
     return (
         <ImageBackground source={bgImage} resizeMode="cover" style={styles.backgroundImage}>
             <HomeCityInfo />
-            {forecastWeatherData.length > 0 && (
-                <FlatList
-                    data={forecastWeatherData}
-                    renderItem={({ item }) => {
-                        const { main, weather, dt_txt } = item;
-                        return (
-                            <HourlyWeatherCard
-                                iconPath={weather?.[0]?.icon || ''}
-                                hour="10:00"
-                                temperature={Math.round(main.temp)}
-                            />
-                        );
-                    }}
-                    keyExtractor={({ dt }) => dt.toString()}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                />
-            )}
+            {/* {forecastWeatherData.length > 0 && ( */}
+            <FlatList
+                style={styles.flatlistContainer}
+                data={forecastWeatherData}
+                renderItem={({ item }) => {
+                    const { main, weather, dt_txt } = item;
+                    return (
+                        <HourlyWeatherCard
+                            iconPath={weather?.[0]?.icon || ''}
+                            hour="10:00"
+                            temperature={Math.round(main.temp)}
+                        />
+                    );
+                }}
+                keyExtractor={({ dt }) => dt.toString()}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+            />
+            {/* )} */}
         </ImageBackground>
     );
 };
