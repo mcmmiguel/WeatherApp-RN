@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { WEATHER_API_KEY } from '@env';
-import { useLocation } from '../../hooks';
-import bgImage from '../../assets/background-img.png';
-import { styles } from './styles';
-import { CityInfoProps, WeatherResponse } from '../../interfaces';
 import { weatherAPI } from '../../api';
+import { useLocation } from '../../hooks';
+import { CityInfoProps, WeatherResponse } from '../../interfaces';
 import { colors, globalStyle } from '../../theme';
+import { styles } from './styles';
 
 export const HomeCityInfo = () => {
 
@@ -31,10 +30,12 @@ export const HomeCityInfo = () => {
             .then(location => {
                 setUserLocation(location);
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         getCurrentWeather();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userLocation]);
 
     const getCurrentWeather = async () => {
@@ -59,26 +60,24 @@ export const HomeCityInfo = () => {
 
     return (
         <View style={styles.mainContainer}>
-            <ImageBackground source={bgImage} resizeMode="cover" style={styles.backgroundImage}>
-                <View style={styles.infoContainer}>
-                    <View>
-                        <View style={styles.cityContainer}>
-                            <Icon name="location-sharp" size={20} color={colors.white} />
-                            <Text style={[globalStyle.textWhite, styles.cityText]}>{cityInfo.name}</Text>
-                        </View>
-                        <Text style={[globalStyle.textWhite, styles.temperature]}>{cityInfo.temperature}°</Text>
-                        <Text style={[globalStyle.textWhite, styles.weather]}>{cityInfo.weather.length > 0 ? cityInfo.weather[0].main : 'No disponible'}</Text>
-                        <View style={styles.coordsContainer}>
-                            <Text style={[globalStyle.textWhite, styles.highlow]}>H: <Text>{cityInfo.maxTemperature}°</Text></Text>
-                            <Text style={[globalStyle.textWhite, styles.highlow]}>L: <Text>{cityInfo.minTemperature}°</Text></Text>
-                        </View>
+            <View style={styles.infoContainer}>
+                <View>
+                    <View style={styles.cityContainer}>
+                        <Icon name="location-sharp" size={20} color={colors.white} />
+                        <Text style={[globalStyle.textWhite, styles.cityText]}>{cityInfo.name}</Text>
                     </View>
-                    <Image
-                        source={{ uri: `https://openweathermap.org/img/wn/${cityInfo.weather.length > 0 ? cityInfo.weather[0].icon : ''}@4x.png` }}
-                        style={styles.weatherIcon}
-                    />
+                    <Text style={[globalStyle.textWhite, styles.temperature]}>{cityInfo.temperature}°</Text>
+                    <Text style={[globalStyle.textWhite, styles.weather]}>{cityInfo.weather.length > 0 ? cityInfo.weather[0].main : 'No disponible'}</Text>
+                    <View style={styles.coordsContainer}>
+                        <Text style={[globalStyle.textWhite, styles.highlow]}>H: <Text>{cityInfo.maxTemperature}°</Text></Text>
+                        <Text style={[globalStyle.textWhite, styles.highlow]}>L: <Text>{cityInfo.minTemperature}°</Text></Text>
+                    </View>
                 </View>
-            </ImageBackground>
+                <Image
+                    source={{ uri: `https://openweathermap.org/img/wn/${cityInfo.weather.length > 0 ? cityInfo.weather[0].icon : ''}@4x.png` }}
+                    style={styles.weatherIcon}
+                />
+            </View>
         </View>
     );
 };

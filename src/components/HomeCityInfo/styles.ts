@@ -11,10 +11,6 @@ export const styles = StyleSheet.create({
         padding: 20,
         marginTop: '10%',
     },
-    backgroundImage: {
-        flex: 1,
-        height: '100%',
-    },
     cityContainer: {
         flexDirection: 'row',
         alignItems: 'center',
