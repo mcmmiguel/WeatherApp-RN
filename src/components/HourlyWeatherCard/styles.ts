@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     hour: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: '300',
         marginBottom: 5,
     },
