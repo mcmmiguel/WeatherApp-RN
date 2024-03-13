@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, ImageBackground } from 'react-native';
+import { FlatList, ImageBackground, Text, View } from 'react-native';
 import { HomeCityInfo, HourlyWeatherCard } from '../../components';
 import bgImage from '../../assets/background-img.png';
 import { weatherAPI } from '../../api';
@@ -31,25 +31,30 @@ export const HomeScreen = () => {
     return (
         <ImageBackground source={bgImage} resizeMode="cover" style={styles.backgroundImage}>
             <HomeCityInfo />
-            {/* {forecastWeatherData.length > 0 && ( */}
-            <FlatList
-                style={styles.flatlistContainer}
-                data={forecastWeatherData}
-                renderItem={({ item }) => {
-                    const { main, weather, dt } = item;
-                    return (
-                        <HourlyWeatherCard
-                            iconPath={weather?.[0]?.icon || ''}
-                            hour={getFormattedHour(dt)}
-                            temperature={Math.round(main.temp)}
-                        />
-                    );
-                }}
-                keyExtractor={({ dt }) => dt.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-            />
-            {/* )} */}
+            {forecastWeatherData && (
+                <View style={styles.forecastContainer}>
+                    <View style={styles.forecastTextContainer}>
+                        <Text style={styles.forecastText}>5 day forecast</Text>
+                    </View>
+                    <FlatList
+                        style={styles.forecastFlatList}
+                        data={forecastWeatherData}
+                        renderItem={({ item }) => {
+                            const { main, weather, dt } = item;
+                            return (
+                                <HourlyWeatherCard
+                                    iconPath={weather?.[0]?.icon || ''}
+                                    hour={getFormattedHour(dt)}
+                                    temperature={Math.round(main.temp)}
+                                />
+                            );
+                        }}
+                        keyExtractor={({ dt }) => dt.toString()}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
+            )}
         </ImageBackground>
     );
 };

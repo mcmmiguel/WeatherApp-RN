@@ -7,9 +7,19 @@ export const styles = StyleSheet.create({
         width: 75,
         alignItems: 'center',
         marginHorizontal: 10,
+        marginVertical: 10,
         paddingHorizontal: 10,
         borderRadius: 10,
         backgroundColor: colors.primary,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
     },
     icon: {
         width: 60,
