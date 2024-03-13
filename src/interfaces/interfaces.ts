@@ -10,6 +10,7 @@ export interface CityCardProps {
 
 export interface HourlyWeatherCardProps {
     iconPath: string;
+    date: string;
     hour: string;
     temperature: number;
 }

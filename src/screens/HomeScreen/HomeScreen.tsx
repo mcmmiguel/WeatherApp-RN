@@ -3,7 +3,7 @@ import { FlatList, ImageBackground, Text, View } from 'react-native';
 import { HomeCityInfo, HourlyWeatherCard } from '../../components';
 import bgImage from '../../assets/background-img.png';
 import { weatherAPI } from '../../api';
-import { getFormattedHour } from '../../helpers';
+import { getFormattedDay, getFormattedHour } from '../../helpers';
 import { useLocation } from '../../hooks';
 import { WEATHER_API_KEY } from '@env';
 import { styles } from './styles';
@@ -44,6 +44,7 @@ export const HomeScreen = () => {
                             return (
                                 <HourlyWeatherCard
                                     iconPath={weather?.[0]?.icon || ''}
+                                    date={getFormattedDay(dt)}
                                     hour={getFormattedHour(dt)}
                                     temperature={Math.round(main.temp)}
                                 />

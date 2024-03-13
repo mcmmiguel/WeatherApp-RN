@@ -3,9 +3,10 @@ import { colors } from '../../theme';
 
 export const styles = StyleSheet.create({
     container: {
-        height: 130,
+        height: 160,
         width: 75,
         alignItems: 'center',
+        justifyContent: 'center',
         marginHorizontal: 10,
         marginVertical: 10,
         paddingHorizontal: 10,
@@ -24,14 +25,23 @@ export const styles = StyleSheet.create({
     icon: {
         width: 60,
         height: 60,
-        resizeMode: 'cover',
     },
-    hour: {
+    dateTime: {
         fontSize: 15,
         fontWeight: '300',
+    },
+    date: {
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        color: colors.black,
+        fontWeight: '500',
+        marginTop: -1,
         marginBottom: 5,
+        borderRadius: 5,
+        paddingHorizontal: 5,
+        paddingVertical: 2,
     },
     temperature: {
-        fontSize: 20,
+        marginTop: 3,
+        fontSize: 22,
     },
 });
