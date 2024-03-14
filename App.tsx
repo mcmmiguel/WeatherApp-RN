@@ -3,7 +3,7 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'react-native';
 import { PermissionsProvider } from './src/context';
 import { NavigationContainer } from '@react-navigation/native';
-import { StackNavigator } from './src/navigation/StackNavigator';
+import { BottomTabs } from './src/navigation';
 
 const AppState = ({ children }: any) => {
   return (
@@ -19,7 +19,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <AppState>
         <StatusBar translucent backgroundColor={'transparent'} />
-        <StackNavigator />
+        <BottomTabs />
       </AppState>
     </NavigationContainer>
   );

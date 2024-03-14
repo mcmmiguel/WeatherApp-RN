@@ -3,7 +3,7 @@ import { colors } from '../../theme';
 
 
 const { height } = Dimensions.get('window');
-const top = height * 0.55;
+const top = height * 0.50;
 
 export const styles = StyleSheet.create({
     backgroundImage: {
