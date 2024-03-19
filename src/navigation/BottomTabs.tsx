@@ -3,12 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen, SearchScreen } from '../screens';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from '../theme';
+// import LinearGradient from 'react-native-linear-gradient';
 
 const Tab = createBottomTabNavigator();
-
-// const tabIconsMap = {
-//     Home:
-// }
 
 export const BottomTabs = () => {
     return (
@@ -36,7 +33,7 @@ export const BottomTabs = () => {
                 tabBarLabelStyle: {
                     fontSize: 15,
                 },
-                tabBarIcon: ({ focused, size }) => {
+                tabBarIcon: ({ focused }) => {
                     let iconName: string;
 
                     switch (route.name) {
@@ -49,6 +46,7 @@ export const BottomTabs = () => {
                     }
                     return <Icon name={iconName} size={30} color={'white'} />;
                 },
+
             })}>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Search" component={SearchScreen} />
