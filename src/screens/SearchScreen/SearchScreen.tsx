@@ -1,24 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { ImageBackground, TextInput, View } from 'react-native';
 import { CityCard } from '../../components';
 import { weatherAPI } from '../../api';
 import { CityInfoProps, WeatherResponse } from '../../interfaces';
-
-// const cityInfo = {
-//     cityName: 'Manzanillo',
-//     countryCode: 'MX',
-//     units: 'metric',
-//     apiID: 'd08590422e6253bd0e931cc2b9133511',
-// };
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { styles } from './styles';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { colors } from '../../theme';
+import { WEATHER_API_KEY } from '@env';
 
 export const SearchScreen = () => {
 
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState<WeatherResponse[]>([]);
     const [savedCities, setSavedCities] = useState<CityInfoProps[]>([]);
 
+    const handleSearch = async () => {
+        try {
+            const resp = await weatherAPI.get(`/weather?q=${searchQuery}&appid=${WEATHER_API_KEY}&units=metric`);
+            setSearchResults([resp.data]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    // const saveCity = () => {
+    useEffect(() => {
+        if (searchQuery.length === 0) {
+            setSearchResults([]);
+            return;
+        }
 
-    // };
+        setTimeout(() => {
+            handleSearch();
+        }, 1000);
+
+    }, [searchQuery]);
 
     const loadWeatherData = async () => {
         try {
@@ -34,26 +50,40 @@ export const SearchScreen = () => {
             };
 
             setSavedCities([...savedCities, cityInfo]);
-            console.log(savedCities);
 
         } catch (error) {
             console.log(error);
         }
     };
 
-    useEffect(() => {
-        loadWeatherData();
-    }, []);
-
     return (
-        <View>
-            <CityCard
-                city="Armería"
-                temperature="20"
-                lat={15}
-                long={15}
-                state="Colima"
-            />
-        </View>
+        <ImageBackground source={require('../../assets/background-img.png')} resizeMode="cover" style={styles.backgroundImage}>
+            <SafeAreaView style={styles.mainContainer}>
+                <View style={styles.searchBarContainer}>
+                    <Icon style={styles.searchIcon} name="search-outline" size={25} color={colors.white} />
+                    <TextInput
+                        style={styles.searchBar}
+                        value={searchQuery}
+                        onChangeText={setSearchQuery}
+                        placeholder="Search location"
+                        placeholderTextColor={colors.white}
+                    />
+                </View>
+
+                {searchResults &&
+                    searchResults.map(city => {
+                        const { name, main: { temp }, coord, sys } = city;
+                        return (
+                            <CityCard
+                                city={name}
+                                temperature={Math.round(temp)}
+                                lat={coord.lat}
+                                long={coord.lon}
+                                state={sys.country}
+                            />
+                        );
+                    })}
+            </SafeAreaView>
+        </ImageBackground>
     );
 };

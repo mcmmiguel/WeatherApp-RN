@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, ImageBackground, Text, View } from 'react-native';
 import { HomeCityInfo, HourlyWeatherCard } from '../../components';
-import bgImage from '../../assets/background-img.png';
 import { weatherAPI } from '../../api';
 import { getFormattedDay, getFormattedHour } from '../../helpers';
 import { useLocation } from '../../hooks';
@@ -29,7 +28,7 @@ export const HomeScreen = () => {
     }, [userLocation]);
 
     return (
-        <ImageBackground source={bgImage} resizeMode="cover" style={styles.backgroundImage}>
+        <ImageBackground source={require('../../assets/background-img.png')} resizeMode="cover" style={styles.backgroundImage}>
             <HomeCityInfo />
             {forecastWeatherData && (
                 <View style={styles.forecastContainer}>
