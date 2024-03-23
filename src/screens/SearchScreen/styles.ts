@@ -27,4 +27,9 @@ export const styles = StyleSheet.create({
         fontSize: 17,
         color: colors.white,
     },
+    recentlyAddedText: {
+        color: colors.white,
+        fontSize: 25,
+        letterSpacing: 0.8,
+    },
 });

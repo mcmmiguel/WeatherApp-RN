@@ -49,27 +49,6 @@ export const SearchScreen = () => {
 
     }, [searchQuery]);
 
-    const loadWeatherData = async () => {
-        try {
-            const { data: { name, coord, sys, main, weather, id } } = await weatherAPI.get<WeatherResponse>('https://api.openweathermap.org/data/2.5/weather?q=manzanillo,MX&appid=d08590422e6253bd0e931cc2b9133511&units=metric');
-            const cityInfo = {
-                id,
-                name,
-                coord,
-                countryCode: sys.country,
-                temperature: main.temp,
-                maxTemperature: main.temp_max,
-                minTemperature: main.temp_min,
-                weather,
-            };
-
-            setSavedCities([...savedCities, cityInfo]);
-
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     return (
         <ImageBackground source={require('../../assets/background-img.png')} resizeMode="cover" style={styles.backgroundImage}>
             <SafeAreaView style={styles.mainContainer}>
@@ -84,7 +63,9 @@ export const SearchScreen = () => {
                     />
                 </View>
 
-                {searchResults &&
+
+                {searchQuery && searchResults
+                    ?
                     searchResults.map(city => {
                         const { name, main: { temp }, coord, sys, weather, id } = city;
                         return (
@@ -99,27 +80,28 @@ export const SearchScreen = () => {
                                 onSave={handleSaveCity}
                             />
                         );
-                    })}
-
-                <Text>Recently Added</Text>
-                {savedCities &&
-                    savedCities.map((city) => {
-                        const { coord, countryCode, id, name, temperature, weather, isSaved } = city;
-                        return (
-                            <CityCard
-                                key={id}
-                                id={id}
-                                name={name}
-                                temperature={Math.round(temperature)}
-                                coord={coord}
-                                countryCode={countryCode}
-                                weather={weather}
-                                isSaved={isSaved}
-                                onSave={handleSaveCity}
-                            />
-                        );
                     })
-
+                    :
+                    <>
+                        <Text style={styles.recentlyAddedText}>Recently Added</Text>
+                        {savedCities.map((city) => {
+                            const { coord, countryCode, id, name, temperature, weather, isSaved } = city;
+                            return (
+                                <CityCard
+                                    key={id}
+                                    id={id}
+                                    name={name}
+                                    temperature={Math.round(temperature)}
+                                    coord={coord}
+                                    countryCode={countryCode}
+                                    weather={weather}
+                                    isSaved={isSaved}
+                                    onSave={handleSaveCity}
+                                />
+                            );
+                        })
+                        }
+                    </>
                 }
             </SafeAreaView>
         </ImageBackground>
