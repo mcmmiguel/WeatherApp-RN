@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../theme';
 
 export const styles = StyleSheet.create({
     primaryButton: {
         height: 45,
         width: 200,
-        backgroundColor: 'black',
+        backgroundColor: colors.darkPrimary,
         borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
@@ -19,6 +20,5 @@ export const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontSize: 18,
-
     },
 });

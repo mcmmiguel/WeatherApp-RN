@@ -58,7 +58,7 @@ export const SearchScreen = () => {
                         style={styles.searchBar}
                         value={searchQuery}
                         onChangeText={setSearchQuery}
-                        placeholder="Search location"
+                        placeholder="Ex. Salamanca, ES"
                         placeholderTextColor={colors.white}
                     />
                 </View>

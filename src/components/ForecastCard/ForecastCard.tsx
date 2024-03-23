@@ -4,7 +4,7 @@ import { HourlyWeatherCardProps } from '../../interfaces';
 import { styles } from './styles';
 import { globalStyle } from '../../theme';
 
-export const HourlyWeatherCard = ({ iconPath, date, hour, temperature }: HourlyWeatherCardProps) => {
+export const ForecastCard = ({ iconPath, date, hour, temperature }: HourlyWeatherCardProps) => {
     return (
         <View style={styles.container}>
             <Image style={styles.icon} source={{ uri: `https://openweathermap.org/img/wn/${iconPath}@4x.png` }} />

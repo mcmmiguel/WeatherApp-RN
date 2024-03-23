@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, ImageBackground, Text, View } from 'react-native';
-import { HomeCityInfo, HourlyWeatherCard } from '../../components';
+import { HomeCityInfo, ForecastCard } from '../../components';
 import { weatherAPI } from '../../api';
 import { getFormattedDay, getFormattedHour } from '../../helpers';
 import { useLocation } from '../../hooks';
@@ -41,7 +41,7 @@ export const HomeScreen = () => {
                         renderItem={({ item }) => {
                             const { main, weather, dt } = item;
                             return (
-                                <HourlyWeatherCard
+                                <ForecastCard
                                     iconPath={weather?.[0]?.icon || ''}
                                     date={getFormattedDay(dt)}
                                     hour={getFormattedHour(dt)}
