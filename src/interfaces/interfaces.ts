@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 
 export interface CityCardProps {
     id: number;
@@ -10,11 +11,17 @@ export interface CityCardProps {
     onSave: (cityInfo: any) => void;
 }
 
-export interface HourlyWeatherCardProps {
+export interface ForecastCardProps {
     iconPath: string;
     date: string;
     hour: string;
     temperature: number;
+}
+
+export interface DebouncedSearchBarProps {
+    searchQuery: string;
+    setSearchQuery: Dispatch<SetStateAction<string>>;
+    setSearchResults: Dispatch<SetStateAction<WeatherResponse[]>>;
 }
 
 export interface CityInfoProps {

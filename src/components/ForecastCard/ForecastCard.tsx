@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { HourlyWeatherCardProps } from '../../interfaces';
+import { ForecastCardProps } from '../../interfaces';
 import { styles } from './styles';
 import { globalStyle } from '../../theme';
 
-export const ForecastCard = ({ iconPath, date, hour, temperature }: HourlyWeatherCardProps) => {
+export const ForecastCard = ({ iconPath, date, hour, temperature }: ForecastCardProps) => {
     return (
         <View style={styles.container}>
             <Image style={styles.icon} source={{ uri: `https://openweathermap.org/img/wn/${iconPath}@4x.png` }} />
