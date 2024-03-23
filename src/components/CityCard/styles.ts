@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     mainContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         backgroundColor: colors.primary,
         paddingVertical: 10,
         paddingRight: 25,
@@ -15,8 +16,13 @@ export const styles = StyleSheet.create({
     infoContainer: {
 
     },
-    iconContainer: {
-        justifyContent: 'center',
+    actionPanel: {
+        alignItems: 'center',
+    },
+    weatherIcon: {
+        height: 90,
+        width: 90,
+        resizeMode: 'cover',
     },
     degreesText: {
         color: colors.white,
@@ -33,5 +39,7 @@ export const styles = StyleSheet.create({
     cityText: {
         color: colors.white,
         marginTop: 15,
+    },
+    favoriteButton: {
     },
 });

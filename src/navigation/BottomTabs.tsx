@@ -41,7 +41,7 @@ export const BottomTabs = () => {
                             iconName = `${focused ? 'home-sharp' : 'home-outline'}`;
                             break;
                         case 'Search':
-                            iconName = `${focused ? 'add-circle-sharp' : 'add-circle-outline'}`;
+                            iconName = `${focused ? 'heart-sharp' : 'heart-outline'}`;
                             break;
                     }
                     return <Icon name={iconName} size={30} color={'white'} />;

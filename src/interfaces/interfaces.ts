@@ -1,11 +1,13 @@
 
 export interface CityCardProps {
+    id: number;
     temperature: number;
-    weather?: string;
-    lat: number;
-    long: number;
-    city: string;
-    state: string;
+    weather: Weather[];
+    coord: Coord;
+    name: string;
+    countryCode: string;
+    isSaved?: boolean;
+    onSave: (cityInfo: any) => void;
 }
 
 export interface HourlyWeatherCardProps {
@@ -16,6 +18,8 @@ export interface HourlyWeatherCardProps {
 }
 
 export interface CityInfoProps {
+    id: number;
+    isSaved?: boolean;
     name: string;
     coord: Coord,
     countryCode: string,

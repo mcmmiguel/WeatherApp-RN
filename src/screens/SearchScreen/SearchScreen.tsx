@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ImageBackground, TextInput, View } from 'react-native';
+import { ImageBackground, Text, TextInput, View } from 'react-native';
 import { CityCard } from '../../components';
 import { weatherAPI } from '../../api';
 import { CityInfoProps, WeatherResponse } from '../../interfaces';
@@ -24,6 +24,19 @@ export const SearchScreen = () => {
         }
     };
 
+    const handleSaveCity = (cityInfo: CityInfoProps) => {
+
+        const cityExists = savedCities.some(savedCity => savedCity.id === cityInfo.id);
+
+        if (!cityExists) {
+            setSavedCities([...savedCities, cityInfo]);
+            console.log('Ciudad agregada', savedCities);
+        } else {
+            setSavedCities(savedCities.filter((savedCity => savedCity.id !== cityInfo.id)));
+            console.log('Ciudad removida');
+        }
+    };
+
     useEffect(() => {
         if (searchQuery.length === 0) {
             setSearchResults([]);
@@ -38,8 +51,9 @@ export const SearchScreen = () => {
 
     const loadWeatherData = async () => {
         try {
-            const { data: { name, coord, sys, main, weather } } = await weatherAPI.get<WeatherResponse>('https://api.openweathermap.org/data/2.5/weather?q=manzanillo,MX&appid=d08590422e6253bd0e931cc2b9133511&units=metric');
+            const { data: { name, coord, sys, main, weather, id } } = await weatherAPI.get<WeatherResponse>('https://api.openweathermap.org/data/2.5/weather?q=manzanillo,MX&appid=d08590422e6253bd0e931cc2b9133511&units=metric');
             const cityInfo = {
+                id,
                 name,
                 coord,
                 countryCode: sys.country,
@@ -72,17 +86,41 @@ export const SearchScreen = () => {
 
                 {searchResults &&
                     searchResults.map(city => {
-                        const { name, main: { temp }, coord, sys } = city;
+                        const { name, main: { temp }, coord, sys, weather, id } = city;
                         return (
                             <CityCard
-                                city={name}
+                                key={id}
+                                id={id}
+                                name={name}
                                 temperature={Math.round(temp)}
-                                lat={coord.lat}
-                                long={coord.lon}
-                                state={sys.country}
+                                coord={coord}
+                                countryCode={sys.country}
+                                weather={weather}
+                                onSave={handleSaveCity}
                             />
                         );
                     })}
+
+                <Text>Recently Added</Text>
+                {savedCities &&
+                    savedCities.map((city) => {
+                        const { coord, countryCode, id, name, temperature, weather, isSaved } = city;
+                        return (
+                            <CityCard
+                                key={id}
+                                id={id}
+                                name={name}
+                                temperature={Math.round(temperature)}
+                                coord={coord}
+                                countryCode={countryCode}
+                                weather={weather}
+                                isSaved={isSaved}
+                                onSave={handleSaveCity}
+                            />
+                        );
+                    })
+
+                }
             </SafeAreaView>
         </ImageBackground>
     );
