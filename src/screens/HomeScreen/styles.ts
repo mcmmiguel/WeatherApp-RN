@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     forecastText: {
-        color: colors.darkPrimary,
+        color: colors.primary,
         textTransform: 'capitalize',
         paddingHorizontal: 15,
         paddingVertical: 5,
